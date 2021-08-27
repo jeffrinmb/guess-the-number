@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Jeffrin Mathew Benny" />
+    <link href="styles.css" rel="stylesheet" />
+    <title>Guess the Number</title>
+  </head>
+  <body>
+    <header class="header">
+      <button class="btn header-btn">Again!</button>
+      <p class="header-comment">(Between 1 & 20)</p>
+      <h1>Guess The Number</h1>
+      <div class="guess-number">?</div>
+    </header>
+    <main class="main">
+      <section class="left">
+        <input class="number" type="number" />
+        <button class="btn check-btn">Check!</button>
+      </section>
+      <section class="right">
+        <p class="message">Start Guessing!</p>
+        <p>Current Score: <span class="score-current">20</span></p>
+        <p>High Score: <span class="score-high">0</span></p>
+      </section>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>

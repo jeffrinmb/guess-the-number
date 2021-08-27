@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+  font-family: 'Press Start 2P', cursive;
+  color: white;
+  background-color: black;
+  margin: 0px;
+}
+
+.header {
+  height: 35vh;
+  text-align: center;
+  border-bottom: 5px solid white;
+}
+
+.main {
+  height: 65vh;
+}
+
+.btn {
+  font-family: 'Press Start 2P', cursive;
+  padding: 1rem 2rem;
+}
+
+.header .header-btn {
+  position: absolute;
+  left: 2rem;
+  top: 1rem;
+}
+
+.header .header-comment {
+  position: absolute;
+  right: 2rem;
+  top: 1rem;
+}
+
+.header h1 {
+  position: relative;
+  top: 10vh;
+  font-weight: bold;
+  font-size: 3em;
+}
+
+.header .guess-number {
+  color: black;
+  padding: 2rem;
+  position: absolute;
+  background-color: white;
+  top: 35vh;
+  left: 45vw;
+  font-size: 2rem;
+}
+
+.left {
+  position: absolute;
+  top: 60vh;
+  left: 4rem;
+}
+
+.right {
+  position: absolute;
+  top: 65vh;
+  right: 4rem;
+  text-align: right;
+}
+
+.number {
+  font-family: 'Press Start 2P', cursive;
+  padding: 2rem;
+  height: 4.5rem;
+  width: 4.5rem;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+}
+
+.check-btn {
+  display: block;
+}
