@@ -51,6 +51,7 @@ btnReset.addEventListener('click', () => {
   currentScoreVal = 20;
   currentScore.textContent = currentScoreVal;
   guessNumber.textContent = '?';
+  inputNumber.value = '';
   message.textContent = 'Start Guessing!';
   randomNumber = Math.floor(Math.random() * 20) + 1;
   body.style.backgroundColor = '#000';
