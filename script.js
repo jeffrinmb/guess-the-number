@@ -1,59 +1,63 @@
 'use strict';
 
-const body = document.querySelector('body');
-const guessNumber = document.querySelector('.guess-number');
-const inputNumber = document.querySelector('.number');
-const btnReset = document.querySelector('.header-btn');
-const btnCheck = document.querySelector('.check-btn');
-const currentScore = document.querySelector('.score-current');
-const highScore = document.querySelector('.score-high');
+const mysteryNumber = document.querySelector('.number');
+const guessedNumber = document.querySelector('.guess');
+const btnReset = document.querySelector('.again');
+const btnCheck = document.querySelector('.check');
 const message = document.querySelector('.message');
+const currentScore = document.querySelector('.score');
+const highScore = document.querySelector('.highscore');
+const body = document.querySelector('body');
+let currentScoreVal = 0;
+let randomNumber = 0;
 
-let randomNumber = Math.floor(Math.random() * 20) + 1;
-let currentScoreVal = 20;
-let highScoreVal = 0;
+const setGame = function () {
+  currentScoreVal = 20;
+  randomNumber = Math.floor(Math.random() * 20) + 1;
+  mysteryNumber.textContent = '?';
+  guessedNumber.value = '';
+  message.textContent = 'Start guessing...';
+  currentScore.textContent = currentScoreVal;
+  btnCheck.disabled = false;
+  body.style.backgroundColor = '#222';
+};
+
+const messageLog = function (mVal) {
+  message.textContent = mVal;
+};
+
+setGame();
 
 btnCheck.addEventListener('click', () => {
-  let guessedNumber = Number(inputNumber.value);
-  if (!guessedNumber || guessedNumber > 20 || guessedNumber < 1) {
-    message.textContent = 'Please enter a value between 1 & 20';
+  let guess = Number(guessedNumber.value);
+  if (!guess || guess < 1 || guess > 20) {
+    messageLog('⛔ Enter a valid number..');
   } else {
-    if (currentScoreVal > 1) {
-      if (randomNumber === guessedNumber) {
-        message.textContent = 'You have won!';
-        currentScore.textContent = currentScoreVal;
-        guessNumber.textContent = randomNumber;
-        body.style.backgroundColor = '#0F0';
-        btnCheck.disabled = true;
-        if (highScoreVal < currentScoreVal) {
-          highScoreVal = currentScoreVal;
-          highScore.textContent = highScoreVal;
-        }
-      } else if (randomNumber > guessedNumber) {
-        message.textContent = 'You have entered a low value!';
+    if (guess === randomNumber) {
+      messageLog('🎉 You Won!');
+      btnCheck.disabled = true;
+      mysteryNumber.textContent = randomNumber;
+      body.style.backgroundColor = '#60b347';
+      if (Number(highScore.textContent) < currentScoreVal) {
+        highScore.textContent = currentScoreVal;
+      }
+    } else {
+      if (currentScoreVal > 1) {
+        messageLog(
+          guess < randomNumber
+            ? '📉 Entered Value is Low!'
+            : '📈 Entered Value is High!'
+        );
         currentScoreVal--;
         currentScore.textContent = currentScoreVal;
       } else {
-        message.textContent = 'You have entered a high value!';
-        currentScoreVal--;
+        messageLog('❌ Game Over!');
+        currentScoreVal = 0;
         currentScore.textContent = currentScoreVal;
+        btnCheck.disabled = true;
       }
-    } else {
-      message.textContent = 'Please Try Again!';
-      body.style.backgroundColor = '#F00';
-      currentScore.textContent = 0;
-      btnCheck.disabled = true;
     }
   }
 });
 
-btnReset.addEventListener('click', () => {
-  currentScoreVal = 20;
-  currentScore.textContent = currentScoreVal;
-  guessNumber.textContent = '?';
-  inputNumber.value = '';
-  message.textContent = 'Start Guessing!';
-  randomNumber = Math.floor(Math.random() * 20) + 1;
-  body.style.backgroundColor = '#000';
-  btnCheck.disabled = false;
-});
+btnReset.addEventListener('click', setGame);
